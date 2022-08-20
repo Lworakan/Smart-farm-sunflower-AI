@@ -1,6 +1,7 @@
 # YOLOv5 requirements
 # Usage: pip install -r requirements.txt
-
+streamlit==1.1.0
+plotly==5.1.0
 # Base ----------------------------------------
 matplotlib>=3.2.2
 numpy>=1.18.5
