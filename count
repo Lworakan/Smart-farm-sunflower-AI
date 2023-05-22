@@ -1,3 +1,18 @@
 count = 0
-count += 1
-print(count)
+for j, (*xyxy, conf, cls) in enumerate(reversed(det[:, :6])):
+            # seg = segments[j].reshape(-1)  # (n,2) to (n*2)
+            line = (cls, conf)
+            x_c, y_c, bbox_w, bbox_h = xyxy_to_xywh(*xyxy)
+            bbow_xyxy = [tensor.item() for tensor in xyxy]
+            xywh_obj = [x_c, y_c, bbox_w, bbox_h]
+            label = f' {self.model.names[int(c)]} {conf:.2f}'
+            xywh_bboxs.append(xywh_obj)
+            confs.append([conf.item()])
+            oids.append(int(cls))
+            cv2.rectangle(im0, rectangle_top_left_back, rectangle_bottom_right_back, (0, 0, 0), -1)
+            if check_rect_overlap(bbow_xyxy, rectangle_top_left_back+rectangle_bottom_right_back) or check_rect_overlap(bbow_xyxy, rectangle_top_left+rectangle_bottom_right) :
+                counter = counter -1    
+                if check_rect_overlap(bbow_xyxy, rectangle_top_left+rectangle_bottom_right):
+                    count +=1
+                    
+print(count)     
