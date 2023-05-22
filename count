@@ -1,1 +1,2 @@
-print('hello')
+count = 0
+print(count)
